@@ -32,7 +32,7 @@
 
 				<md-field>
 					<label>파일 첨부</label>
-					<md-file multiple @md-change="upload"/>
+					<md-file @md-change="upload"/>
 				</md-field>
 
 				<md-field>
@@ -72,7 +72,8 @@ export default {
 					'Content-Type': 'multipart/form-data'
 				}
 			});
-			console.log(fd, ret, this.files);
+			//console.log(fd, ret, this.files);
+			alert(ret.data);
 		},
 		upload(list) {
 			this.files = list;

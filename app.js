@@ -7,14 +7,16 @@ app.use(fileUpload());
 
 app.post('/send/', (req, res) => {
 	let ret = req.files.file;
+	//console.log(req.files);
+	if (typeof req.files.file !== "object") {
+		for (let file of ret) {
+			file.mv(`./tmp/${file.name}`);
+		}
+	} else ret.mv(`.tmp/${ret.name}`);
 
-	for (let file of ret) {
-		file.mv(`./tmp/${file.name}`);
-	}
 
-	res.status(200).end(JSON.stringify({
-		status: 0
-	}));
+
+	res.status(200).end("메일을 보냈습니다.");
 });
 
 app.use('/', express.static("./public/dist"));
